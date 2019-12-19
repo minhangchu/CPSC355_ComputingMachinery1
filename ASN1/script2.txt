@@ -1,0 +1,76 @@
+Script started on 2019-05-17 12:28:54-06:00
+No such schema “org.gnome.gedit.preferences.editor”
+]0;minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1$ gdb assign1b
+GNU gdb (GDB) Fedora 8.1.1-4.fc28
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "aarch64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from assign1b...done.
+(gdb) b done
+Breakpoint 1 at 0x400654: file assign1b.s, line 65.
+(gdb) n[Kr
+Starting program: /home/uga/minhhang.chu/Desktop/CPSC355 /ASN/ASN1/assign1b 
+warning: the debug information found in "/usr/lib/debug//usr/lib64/ld-2.27.so.debug" does not match "/lib/ld-linux-aarch64.so.1" (CRC mismatch).
+
+Missing separate debuginfos, use: dnf debuginfo-install glibc-2.27-38.fc28.aarch64
+warning: the debug information found in "/usr/lib/debug//lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//usr/lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+For x: -6. The value of y is: -29.
+The current maximumvalue of y: -29
+For x: -5. The value of y is: -139.
+The current maximumvalue of y: -29
+For x: -4. The value of y is: -161.
+The current maximumvalue of y: -29
+For x: -3. The value of y is: -125.
+The current maximumvalue of y: -29
+For x: -2. The value of y is: -61.
+The current maximumvalue of y: -29
+For x: -1. The value of y is: 1.
+The current maximumvalue of y: 1
+For x: 0. The value of y is: 31.
+The current maximumvalue of y: 31
+For x: 1. The value of y is: -1.
+The current maximumvalue of y: 31
+For x: 2. The value of y is: -125.
+The current maximumvalue of y: 31
+For x: 3. The value of y is: -371.
+The current maximumvalue of y: 31
+For x: 4. The value of y is: -769.
+The current maximumvalue of y: 31
+For x: 5. The value of y is: -1349.
+The current maximumvalue of y: 31
+
+Breakpoint 1, done () at assign1b.s:65
+65		ldp	x29,	x30,	[sp],	16		// Restore FP and link registers
+(gdb) i r x19 x20 x21
+x19            0x6	6
+x20            0xfffffffffffffabb	-1349
+x21            0x1f	31
+(gdb) i r x21
+x21            0x1f	31
+(gdb) 
+[1]+  Stopped                 gdb assign1b
+]0;minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1$ exit
+exit
+There are stopped jobs.
+]0;minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1$ exit
+exit
+Exception ignored in: <gdb.GdbOutputFile object at 0xffff9f3ad240>
+Traceback (most recent call last):
+  File "/usr/share/gdb/python/gdb/__init__.py", line 43, in flush
+    def flush(self):
+KeyboardInterrupt
+
+Script done on 2019-05-17 12:29:35-06:00

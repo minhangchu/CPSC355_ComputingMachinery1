@@ -1,0 +1,334 @@
+Script started on 2019-05-17 12:11:59-06:00
+No such schema “org.gnome.gedit.preferences.editor”
+]0;minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1$ gcc assign1a.s -g -o assign1a
+]0;minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1$ gdb assign1a
+GNU gdb (GDB) Fedora 8.1.1-4.fc28
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "aarch64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from assign1a...done.
+(gdb) r
+Starting program: /home/uga/minhhang.chu/Desktop/CPSC355 /ASN/ASN1/assign1a 
+warning: the debug information found in "/usr/lib/debug//usr/lib64/ld-2.27.so.debug" does not match "/lib/ld-linux-aarch64.so.1" (CRC mismatch).
+
+Missing separate debuginfos, use: dnf debuginfo-install glibc-2.27-38.fc28.aarch64
+warning: the debug information found in "/usr/lib/debug//lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//usr/lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+For x: -6. The value of y is: -29.
+The current maximum value of y: -29
+For x: -5. The value of y is: -139.
+The current maximum value of y: -29
+For x: -4. The value of y is: -161.
+The current maximum value of y: -29
+For x: -3. The value of y is: -125.
+The current maximum value of y: -29
+For x: -2. The value of y is: -61.
+The current maximum value of y: -29
+For x: -1. The value of y is: 1.
+The current maximum value of y: 1
+For x: 0. The value of y is: 31.
+The current maximum value of y: 31
+For x: 1. The value of y is: -1.
+The current maximum value of y: 31
+For x: 2. The value of y is: -125.
+The current maximum value of y: 31
+For x: 3. The value of y is: -371.
+The current maximum value of y: 31
+For x: 4. The value of y is: -769.
+The current maximum value of y: 31
+For x: 5. The value of y is: -1349.
+The current maximum value of y: 31
+[Inferior 1 (process 26463) exited with code 0107]
+(gdb) b loop
+Breakpoint 1 at 0x4005fc: file assign1a.s, line 27.
+(gdb) display /i $pc
+1: x/i $pc
+<error: No registers.>
+(gdb) r
+Starting program: /home/uga/minhhang.chu/Desktop/CPSC355 /ASN/ASN1/assign1a 
+warning: the debug information found in "/usr/lib/debug//usr/lib64/ld-2.27.so.debug" does not match "/lib/ld-linux-aarch64.so.1" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//usr/lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+
+Breakpoint 1, loop () at assign1a.s:27
+27	loop:	cmp	x19,	5				// Loop starts. Loop test: compare x value with 5
+1: x/i $pc
+=> 0x4005fc <loop>:	cmp	x19, #0x5
+(gdb) n
+28		b.gt	done					// If x value is greater than 5, branch to done. Otherwise, go to the next line
+1: x/i $pc
+=> 0x400600 <loop+4>:	b.gt	0x400674 <done>
+(gdb) n
+30		mov 	x20,	0				// Initialize y value to 0 again in every loop
+1: x/i $pc
+=> 0x400604 <loop+8>:	mov	x20, #0x0                   	// #0
+(gdb) n
+31		mov 	x22,	-5				// Set the first coefficient to temporary register x22 (-5)
+1: x/i $pc
+=> 0x400608 <loop+12>:	mov	x22, #0xfffffffffffffffb    	// #-5
+(gdb) n
+32		mul	x22,	x22,	x19			// Multiply coefficient with x value (-5x) and store in x22  register
+1: x/i $pc
+=> 0x40060c <loop+16>:	mul	x22, x22, x19
+(gdb) n
+33		mul	x22,	x22,	x19			// Multiply register x22 with x value, store in x22 (-5*x*x)
+1: x/i $pc
+=> 0x400610 <loop+20>:	mul	x22, x22, x19
+(gdb) n
+34		mul	x22,	x22,	x19			// Multiply register x22 with x value, store in x22 (-5*x*x*x)
+1: x/i $pc
+=> 0x400614 <loop+24>:	mul	x22, x22, x19
+(gdb) n
+35		add	x20,	x20,	x22			// Add x22 to y value. Store in x20 which is y value. (y = -5x^3)
+1: x/i $pc
+=> 0x400618 <loop+28>:	add	x20, x20, x22
+(gdb) n
+37		mov	x22,	-31				// Set the second coefficient to temporary register x22 (-31)
+1: x/i $pc
+=> 0x40061c <loop+32>:	mov	x22, #0xffffffffffffffe1    	// #-31
+(gdb) i r x19 x20 x21
+x19            0xfffffffffffffffa	-6
+x20            0x438	1080
+x21            0x0	0
+(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) [K(gdb) n
+38		mul 	x22,	x22,	x19			// Multiply coefficient with x value and store in register x22 (-31*x)
+1: x/i $pc
+=> 0x400620 <loop+36>:	mul	x22, x22, x19
+(gdb) n
+39		mul 	x22,	x22,	x19			// Multiply register x22 with x value, store in x22 (-31*x*x)
+1: x/i $pc
+=> 0x400624 <loop+40>:	mul	x22, x22, x19
+(gdb) n
+40		add	x20,	x20,	x22			// Add x22 to y value. Store in x 20 (y = -5x^3 -31x^2)
+1: x/i $pc
+=> 0x400628 <loop+44>:	add	x20, x20, x22
+(gdb) n
+42		mov 	x22,	4				// Set the third coefficient to temporary register x22 (4)
+1: x/i $pc
+=> 0x40062c <loop+48>:	mov	x22, #0x4                   	// #4
+(gdb) i r x19 x21[K0
+x19            0xfffffffffffffffa	-6
+x20            0xffffffffffffffdc	-36
+(gdb) n
+43		mul 	x22,	x22,	x19			// Multiply coefficient with x value and store in x22 (4*x)
+1: x/i $pc
+=> 0x400630 <loop+52>:	mul	x22, x22, x19
+(gdb) n
+44		add	x20,	x20,	x22			// Add x22 to y value. Store in x20 (y = -5x^3 -31x^2 + 4x)
+1: x/i $pc
+=> 0x400634 <loop+56>:	add	x20, x20, x22
+(gdb) n
+46		add 	x20,	x20,	31			// Add the last coefficient to y value. Store in x 20. (y = -5x^3-31x^2+4x+31)
+1: x/i $pc
+=> 0x400638 <loop+60>:	add	x20, x20, #0x1f
+(gdb) n
+47		cmp	x23,	0				// If count equals 0, which is the first y value, assign y to y max
+1: x/i $pc
+=> 0x40063c <loop+64>:	cmp	x23, #0x0
+(gdb) i r x2[K19 x20
+x19            0xfffffffffffffffa	-6
+x20            0xffffffffffffffe3	-29
+(gdb) n
+48		b.eq	getYmax
+1: x/i $pc
+=> 0x400640 <loop+68>:	b.eq	0x40066c <getYmax>  // b.none
+(gdb) n
+getYmax () at assign1a.s:62
+62		mov	x21,	x20				// Store value of y to max Y
+1: x/i $pc
+=> 0x40066c <getYmax>:	mov	x21, x20
+(gdb) n
+63		b 	end					// Branch to end
+1: x/i $pc
+=> 0x400670 <getYmax+4>:	b	0x40064c <end>
+(gdb) i r x19 x20 x21
+x19            0xfffffffffffffffa	-6
+x20            0xffffffffffffffe3	-29
+x21            0xffffffffffffffe3	-29
+(gdb) n
+end () at assign1a.s:53
+53		ldr	x0,	=format				// Load register x0 with the address of string output
+1: x/i $pc
+=> 0x40064c <end>:	ldr	x0, 0x400680 <done+12>
+(gdb) n
+54		mov	x1,	x19				// Load register x1 with the value x
+1: x/i $pc
+=> 0x400650 <end+4>:	mov	x1, x19
+(gdb) n
+55		mov	x2,	x20				// Load register x2 with the value y
+1: x/i $pc
+=> 0x400654 <end+8>:	mov	x2, x20
+(gdb) n
+56		mov 	x3,	x21				// Load register x3 with the maximum y value
+1: x/i $pc
+=> 0x400658 <end+12>:	mov	x3, x21
+(gdb) n
+57		bl	printf					// Call print function
+1: x/i $pc
+=> 0x40065c <end+16>:	bl	0x400480 <printf@plt>
+(gdb) i r x0 [K[K1 x2 x3
+x1             0xfffffffffffffffa	-6
+x2             0xffffffffffffffe3	-29
+x3             0xffffffffffffffe3	-29
+(gdb) n
+For x: -6. The value of y is: -29.
+The current maximum value of y: -29
+58		add	x19,	x19,	1			// Add 1 to x value
+1: x/i $pc
+=> 0x400660 <end+20>:	add	x19, x19, #0x1
+(gdb) n
+59		add 	x23,	x23,	1			// Add 1 to count number
+1: x/i $pc
+=> 0x400664 <end+24>:	add	x23, x23, #0x1
+(gdb) n
+60		b	loop					// Branch to loop. the loop starts again
+1: x/i $pc
+=> 0x400668 <end+28>:	b	0x4005fc <loop>
+(gdb) n
+
+Breakpoint 1, loop () at assign1a.s:27
+27	loop:	cmp	x19,	5				// Loop starts. Loop test: compare x value with 5
+1: x/i $pc
+=> 0x4005fc <loop>:	cmp	x19, #0x5
+(gdb) n
+28		b.gt	done					// If x value is greater than 5, branch to done. Otherwise, go to the next line
+1: x/i $pc
+=> 0x400600 <loop+4>:	b.gt	0x400674 <done>
+(gdb) n
+30		mov 	x20,	0				// Initialize y value to 0 again in every loop
+1: x/i $pc
+=> 0x400604 <loop+8>:	mov	x20, #0x0                   	// #0
+(gdb) n
+31		mov 	x22,	-5				// Set the first coefficient to temporary register x22 (-5)
+1: x/i $pc
+=> 0x400608 <loop+12>:	mov	x22, #0xfffffffffffffffb    	// #-5
+(gdb) n
+32		mul	x22,	x22,	x19			// Multiply coefficient with x value (-5x) and store in x22  register
+1: x/i $pc
+=> 0x40060c <loop+16>:	mul	x22, x22, x19
+(gdb) n
+33		mul	x22,	x22,	x19			// Multiply register x22 with x value, store in x22 (-5*x*x)
+1: x/i $pc
+=> 0x400610 <loop+20>:	mul	x22, x22, x19
+(gdb) n
+34		mul	x22,	x22,	x19			// Multiply register x22 with x value, store in x22 (-5*x*x*x)
+1: x/i $pc
+=> 0x400614 <loop+24>:	mul	x22, x22, x19
+(gdb) n
+35		add	x20,	x20,	x22			// Add x22 to y value. Store in x20 which is y value. (y = -5x^3)
+1: x/i $pc
+=> 0x400618 <loop+28>:	add	x20, x20, x22
+(gdb) n
+37		mov	x22,	-31				// Set the second coefficient to temporary register x22 (-31)
+1: x/i $pc
+=> 0x40061c <loop+32>:	mov	x22, #0xffffffffffffffe1    	// #-31
+(gdb) i r x19 x20
+x19            0xfffffffffffffffb	-5
+x20            0x271	625
+(gdb) i [K[Kn
+38		mul 	x22,	x22,	x19			// Multiply coefficient with x value and store in register x22 (-31*x)
+1: x/i $pc
+=> 0x400620 <loop+36>:	mul	x22, x22, x19
+(gdb) n
+39		mul 	x22,	x22,	x19			// Multiply register x22 with x value, store in x22 (-31*x*x)
+1: x/i $pc
+=> 0x400624 <loop+40>:	mul	x22, x22, x19
+(gdb) n
+40		add	x20,	x20,	x22			// Add x22 to y value. Store in x 20 (y = -5x^3 -31x^2)
+1: x/i $pc
+=> 0x400628 <loop+44>:	add	x20, x20, x22
+(gdb) n
+42		mov 	x22,	4				// Set the third coefficient to temporary register x22 (4)
+1: x/i $pc
+=> 0x40062c <loop+48>:	mov	x22, #0x4                   	// #4
+(gdb) i r x19 x20
+x19            0xfffffffffffffffb	-5
+x20            0xffffffffffffff6a	-150
+(gdb) i [K[Kn
+43		mul 	x22,	x22,	x19			// Multiply coefficient with x value and store in x22 (4*x)
+1: x/i $pc
+=> 0x400630 <loop+52>:	mul	x22, x22, x19
+(gdb) n
+44		add	x20,	x20,	x22			// Add x22 to y value. Store in x20 (y = -5x^3 -31x^2 + 4x)
+1: x/i $pc
+=> 0x400634 <loop+56>:	add	x20, x20, x22
+(gdb) n
+46		add 	x20,	x20,	31			// Add the last coefficient to y value. Store in x 20. (y = -5x^3-31x^2+4x+31)
+1: x/i $pc
+=> 0x400638 <loop+60>:	add	x20, x20, #0x1f
+(gdb) n
+47		cmp	x23,	0				// If count equals 0, which is the first y value, assign y to y max
+1: x/i $pc
+=> 0x40063c <loop+64>:	cmp	x23, #0x0
+(gdb) i r x19 x20
+x19            0xfffffffffffffffb	-5
+x20            0xffffffffffffff75	-139
+(gdb) 
+x19            0xfffffffffffffffb	-5
+x20            0xffffffffffffff75	-139
+(gdb) n
+48		b.eq	getYmax
+1: x/i $pc
+=> 0x400640 <loop+68>:	b.eq	0x40066c <getYmax>  // b.none
+(gdb) n
+50		cmp 	x20,	x21				// Compare y value and max y value
+1: x/i $pc
+=> 0x400644 <loop+72>:	cmp	x20, x21
+(gdb) n
+51		b.gt	getYmax					// If y is greater than max y, branch to getYmax
+1: x/i $pc
+=> 0x400648 <loop+76>:	b.gt	0x40066c <getYmax>
+(gdb) n
+end () at assign1a.s:53
+53		ldr	x0,	=format				// Load register x0 with the address of string output
+1: x/i $pc
+=> 0x40064c <end>:	ldr	x0, 0x400680 <done+12>
+(gdb) n
+54		mov	x1,	x19				// Load register x1 with the value x
+1: x/i $pc
+=> 0x400650 <end+4>:	mov	x1, x19
+(gdb) n
+55		mov	x2,	x20				// Load register x2 with the value y
+1: x/i $pc
+=> 0x400654 <end+8>:	mov	x2, x20
+(gdb) n
+56		mov 	x3,	x21				// Load register x3 with the maximum y value
+1: x/i $pc
+=> 0x400658 <end+12>:	mov	x3, x21
+(gdb) n
+57		bl	printf					// Call print function
+1: x/i $pc
+=> 0x40065c <end+16>:	bl	0x400480 <printf@plt>
+(gdb) i r x1 x2 x3
+x1             0xfffffffffffffffb	-5
+x2             0xffffffffffffff75	-139
+x3             0xffffffffffffffe3	-29
+(gdb) 
+[1]+  Stopped                 gdb assign1a
+]0;minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1$ exit
+exit
+There are stopped jobs.
+]0;minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1minhhang.chu@csa1:~/Desktop/CPSC355 /ASN/ASN1$ exit
+exit
+Exception ignored in: <gdb.GdbOutputFile object at 0xffff7e2d6240>
+Traceback (most recent call last):
+  File "/usr/share/gdb/python/gdb/__init__.py", line 43, in flush
+    def flush(self):
+KeyboardInterrupt
+
+Script done on 2019-05-17 12:15:47-06:00
