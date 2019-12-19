@@ -1,0 +1,481 @@
+Script started on 2019-05-24 14:21:36-06:00
+]0;minhhang.chu@csa3:~/Desktop/CPSC355 /ASN/ASN2minhhang.chu@csa3:~/Desktop/CPSC355 /ASN/ASN2$ exit[Kgdb assign2c[17@cc assign2c.s -g -o[C[C[C[C[C[C[C[C[C[1Pm4 assign2c.asm > assign2c.s
+]0;minhhang.chu@csa3:~/Desktop/CPSC355 /ASN/ASN2minhhang.chu@csa3:~/Desktop/CPSC355 /ASN/ASN2$ m4 assign2c.asm > assign2c.sexit[K[Kgdb assign2c[17@cc assign2c.s -g -o[C[C[C[C[C[C[C[C[C
+]0;minhhang.chu@csa3:~/Desktop/CPSC355 /ASN/ASN2minhhang.chu@csa3:~/Desktop/CPSC355 /ASN/ASN2$ gcc assign2c.s -g -o assign2c[1Pm4 assign2c.asm > assign2c.sexit[K[Kgdb assign2c
+GNU gdb (GDB) Fedora 8.1.1-4.fc28
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "aarch64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from assign2c...done.
+(gdb) r
+Starting program: /home/uga/minhhang.chu/Desktop/CPSC355 /ASN/ASN2/assign2c 
+warning: the debug information found in "/usr/lib/debug//usr/lib64/ld-2.27.so.debug" does not match "/lib/ld-linux-aarch64.so.1" (CRC mismatch).
+
+Missing separate debuginfos, use: dnf debuginfo-install glibc-2.27-38.fc28.aarch64
+warning: the debug information found in "/usr/lib/debug//lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//usr/lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+multiplier = 0xffffff00 (-256) multiplicand = 0xf0f0f0f0 (-252645136)
+
+product = 0x0000000f multiplier = 0x0f0f1000
+64-bit result = 0x0000000f0f0f1000 (64677154816)
+[Inferior 1 (process 17632) exited with code 061]
+(gdb) b checkLMB
+Breakpoint 1 at 0x400654: file assign2c.s, line 62.
+(gdb) r
+Starting program: /home/uga/minhhang.chu/Desktop/CPSC355 /ASN/ASN2/assign2c 
+warning: the debug information found in "/usr/lib/debug//usr/lib64/ld-2.27.so.debug" does not match "/lib/ld-linux-aarch64.so.1" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//usr/lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+multiplier = 0xffffff00 (-256) multiplicand = 0xf0f0f0f0 (-252645136)
+
+
+Breakpoint 1, checkLMB () at assign2c.s:62
+62		cmp	w22,	32					// Compare variable w22 to 32
+(gdb) display/i $pc
+1: x/i $pc
+=> 0x400654 <checkLMB>:	cmp	w22, #0x20
+(gdb) n
+63		b.ge	adjustProduct					// If w22 is greater or equal 32, branch to adjustProduct
+1: x/i $pc
+=> 0x400658 <checkLMB+4>:	b.ge	0x400694 <adjustProduct>  // b.tcont
+(gdb) n
+65		tst	w19,	0x1				// Test if w19 has the least most bit is 1
+1: x/i $pc
+=> 0x40065c <checkLMB+8>:	tst	w19, #0x1
+(gdb) n
+66		b.eq	shift						// If the LMB is not 1, branch to shift
+1: x/i $pc
+=> 0x400660 <checkLMB+12>:	b.eq	0x400668 <shift>  // b.none
+(gdb) n
+shift () at assign2c.s:70
+70		asr	w19,	w19,	1		// Arithmetic shift right for w19
+1: x/i $pc
+=> 0x400668 <shift>:	asr	w19, w19, #1
+(gdb) n
+72		tst	w21,	0x1				// Test if w21 has the least most bit equal 1
+1: x/i $pc
+=> 0x40066c <shift+4>:	tst	w21, #0x1
+(gdb) n
+73		b.eq	shift_2						// If the LMB is not 1, branch to shift_2
+1: x/i $pc
+=> 0x400670 <shift+8>:	b.eq	0x40067c <shift_2>  // b.none
+(gdb) n
+shift_2 () at assign2c.s:79
+79		and	w19,	w19,	0x7FFFFFFF	// AND operation with w19 and 0x7FFFFFFF
+1: x/i $pc
+=> 0x40067c <shift_2>:	and	w19, w19, #0x7fffffff
+(gdb) n
+loopend () at assign2c.s:82
+82		asr	w21,	w21,	1		// Arithmetic shift right for w21
+1: x/i $pc
+=> 0x400680 <loopend>:	asr	w21, w21, #1
+(gdb) n
+83		add	w22,	w22,	1				// increase variable w22
+1: x/i $pc
+=> 0x400684 <loopend+4>:	add	w22, w22, #0x1
+(gdb) n
+84		b	checkLMB					// Go back to checkLMB to repeat the loop if needed
+1: x/i $pc
+=> 0x400688 <loopend+8>:	b	0x400654 <checkLMB>
+(gdb) n
+
+Breakpoint 1, checkLMB () at assign2c.s:62
+62		cmp	w22,	32					// Compare variable w22 to 32
+1: x/i $pc
+=> 0x400654 <checkLMB>:	cmp	w22, #0x20
+(gdb) n
+63		b.ge	adjustProduct					// If w22 is greater or equal 32, branch to adjustProduct
+1: x/i $pc
+=> 0x400658 <checkLMB+4>:	b.ge	0x400694 <adjustProduct>  // b.tcont
+(gdb) i r w19 w21 w22
+w19            0x7fffff80	2147483520
+w21            0x0	0
+w22            0x1	1
+(gdb) n
+65		tst	w19,	0x1				// Test if w19 has the least most bit is 1
+1: x/i $pc
+=> 0x40065c <checkLMB+8>:	tst	w19, #0x1
+(gdb) n
+66		b.eq	shift						// If the LMB is not 1, branch to shift
+1: x/i $pc
+=> 0x400660 <checkLMB+12>:	b.eq	0x400668 <shift>  // b.none
+(gdb) n
+shift () at assign2c.s:70
+70		asr	w19,	w19,	1		// Arithmetic shift right for w19
+1: x/i $pc
+=> 0x400668 <shift>:	asr	w19, w19, #1
+(gdb) n
+72		tst	w21,	0x1				// Test if w21 has the least most bit equal 1
+1: x/i $pc
+=> 0x40066c <shift+4>:	tst	w21, #0x1
+(gdb) n
+73		b.eq	shift_2						// If the LMB is not 1, branch to shift_2
+1: x/i $pc
+=> 0x400670 <shift+8>:	b.eq	0x40067c <shift_2>  // b.none
+(gdb) n
+shift_2 () at assign2c.s:79
+79		and	w19,	w19,	0x7FFFFFFF	// AND operation with w19 and 0x7FFFFFFF
+1: x/i $pc
+=> 0x40067c <shift_2>:	and	w19, w19, #0x7fffffff
+(gdb) n
+loopend () at assign2c.s:82
+82		asr	w21,	w21,	1		// Arithmetic shift right for w21
+1: x/i $pc
+=> 0x400680 <loopend>:	asr	w21, w21, #1
+(gdb) n
+83		add	w22,	w22,	1				// increase variable w22
+1: x/i $pc
+=> 0x400684 <loopend+4>:	add	w22, w22, #0x1
+(gdb) n
+84		b	checkLMB					// Go back to checkLMB to repeat the loop if needed
+1: x/i $pc
+=> 0x400688 <loopend+8>:	b	0x400654 <checkLMB>
+(gdb) n
+
+Breakpoint 1, checkLMB () at assign2c.s:62
+62		cmp	w22,	32					// Compare variable w22 to 32
+1: x/i $pc
+=> 0x400654 <checkLMB>:	cmp	w22, #0x20
+(gdb) i r w19 2[Kw21 w22
+w19            0x3fffffc0	1073741760
+w21            0x0	0
+w22            0x2	2
+(gdb) n
+63		b.ge	adjustProduct					// If w22 is greater or equal 32, branch to adjustProduct
+1: x/i $pc
+=> 0x400658 <checkLMB+4>:	b.ge	0x400694 <adjustProduct>  // b.tcont
+(gdb) n
+65		tst	w19,	0x1				// Test if w19 has the least most bit is 1
+1: x/i $pc
+=> 0x40065c <checkLMB+8>:	tst	w19, #0x1
+(gdb) n
+66		b.eq	shift						// If the LMB is not 1, branch to shift
+1: x/i $pc
+=> 0x400660 <checkLMB+12>:	b.eq	0x400668 <shift>  // b.none
+(gdb) n
+shift () at assign2c.s:70
+70		asr	w19,	w19,	1		// Arithmetic shift right for w19
+1: x/i $pc
+=> 0x400668 <shift>:	asr	w19, w19, #1
+(gdb) n
+72		tst	w21,	0x1				// Test if w21 has the least most bit equal 1
+1: x/i $pc
+=> 0x40066c <shift+4>:	tst	w21, #0x1
+(gdb) n
+73		b.eq	shift_2						// If the LMB is not 1, branch to shift_2
+1: x/i $pc
+=> 0x400670 <shift+8>:	b.eq	0x40067c <shift_2>  // b.none
+(gdb) n
+shift_2 () at assign2c.s:79
+79		and	w19,	w19,	0x7FFFFFFF	// AND operation with w19 and 0x7FFFFFFF
+1: x/i $pc
+=> 0x40067c <shift_2>:	and	w19, w19, #0x7fffffff
+(gdb) n
+loopend () at assign2c.s:82
+82		asr	w21,	w21,	1		// Arithmetic shift right for w21
+1: x/i $pc
+=> 0x400680 <loopend>:	asr	w21, w21, #1
+(gdb) n
+83		add	w22,	w22,	1				// increase variable w22
+1: x/i $pc
+=> 0x400684 <loopend+4>:	add	w22, w22, #0x1
+(gdb) n
+84		b	checkLMB					// Go back to checkLMB to repeat the loop if needed
+1: x/i $pc
+=> 0x400688 <loopend+8>:	b	0x400654 <checkLMB>
+(gdb) n
+
+Breakpoint 1, checkLMB () at assign2c.s:62
+62		cmp	w22,	32					// Compare variable w22 to 32
+1: x/i $pc
+=> 0x400654 <checkLMB>:	cmp	w22, #0x20
+(gdb) n
+63		b.ge	adjustProduct					// If w22 is greater or equal 32, branch to adjustProduct
+1: x/i $pc
+=> 0x400658 <checkLMB+4>:	b.ge	0x400694 <adjustProduct>  // b.tcont
+(gdb) n
+65		tst	w19,	0x1				// Test if w19 has the least most bit is 1
+1: x/i $pc
+=> 0x40065c <checkLMB+8>:	tst	w19, #0x1
+(gdb) n
+66		b.eq	shift						// If the LMB is not 1, branch to shift
+1: x/i $pc
+=> 0x400660 <checkLMB+12>:	b.eq	0x400668 <shift>  // b.none
+(gdb) n
+shift () at assign2c.s:70
+70		asr	w19,	w19,	1		// Arithmetic shift right for w19
+1: x/i $pc
+=> 0x400668 <shift>:	asr	w19, w19, #1
+(gdb) n
+72		tst	w21,	0x1				// Test if w21 has the least most bit equal 1
+1: x/i $pc
+=> 0x40066c <shift+4>:	tst	w21, #0x1
+(gdb) n
+73		b.eq	shift_2						// If the LMB is not 1, branch to shift_2
+1: x/i $pc
+=> 0x400670 <shift+8>:	b.eq	0x40067c <shift_2>  // b.none
+(gdb) n
+shift_2 () at assign2c.s:79
+79		and	w19,	w19,	0x7FFFFFFF	// AND operation with w19 and 0x7FFFFFFF
+1: x/i $pc
+=> 0x40067c <shift_2>:	and	w19, w19, #0x7fffffff
+(gdb) n
+loopend () at assign2c.s:82
+82		asr	w21,	w21,	1		// Arithmetic shift right for w21
+1: x/i $pc
+=> 0x400680 <loopend>:	asr	w21, w21, #1
+(gdb) n
+83		add	w22,	w22,	1				// increase variable w22
+1: x/i $pc
+=> 0x400684 <loopend+4>:	add	w22, w22, #0x1
+(gdb) n
+84		b	checkLMB					// Go back to checkLMB to repeat the loop if needed
+1: x/i $pc
+=> 0x400688 <loopend+8>:	b	0x400654 <checkLMB>
+(gdb) n
+
+Breakpoint 1, checkLMB () at assign2c.s:62
+62		cmp	w22,	32					// Compare variable w22 to 32
+1: x/i $pc
+=> 0x400654 <checkLMB>:	cmp	w22, #0x20
+(gdb) i r w19 w21 w22
+w19            0xffffff0	268435440
+w21            0x0	0
+w22            0x4	4
+(gdb) n
+63		b.ge	adjustProduct					// If w22 is greater or equal 32, branch to adjustProduct
+1: x/i $pc
+=> 0x400658 <checkLMB+4>:	b.ge	0x400694 <adjustProduct>  // b.tcont
+(gdb) n
+65		tst	w19,	0x1				// Test if w19 has the least most bit is 1
+1: x/i $pc
+=> 0x40065c <checkLMB+8>:	tst	w19, #0x1
+(gdb) n
+66		b.eq	shift						// If the LMB is not 1, branch to shift
+1: x/i $pc
+=> 0x400660 <checkLMB+12>:	b.eq	0x400668 <shift>  // b.none
+(gdb) n
+shift () at assign2c.s:70
+70		asr	w19,	w19,	1		// Arithmetic shift right for w19
+1: x/i $pc
+=> 0x400668 <shift>:	asr	w19, w19, #1
+(gdb) n
+72		tst	w21,	0x1				// Test if w21 has the least most bit equal 1
+1: x/i $pc
+=> 0x40066c <shift+4>:	tst	w21, #0x1
+(gdb) n
+73		b.eq	shift_2						// If the LMB is not 1, branch to shift_2
+1: x/i $pc
+=> 0x400670 <shift+8>:	b.eq	0x40067c <shift_2>  // b.none
+(gdb) n
+shift_2 () at assign2c.s:79
+79		and	w19,	w19,	0x7FFFFFFF	// AND operation with w19 and 0x7FFFFFFF
+1: x/i $pc
+=> 0x40067c <shift_2>:	and	w19, w19, #0x7fffffff
+(gdb) n
+loopend () at assign2c.s:82
+82		asr	w21,	w21,	1		// Arithmetic shift right for w21
+1: x/i $pc
+=> 0x400680 <loopend>:	asr	w21, w21, #1
+(gdb) n
+83		add	w22,	w22,	1				// increase variable w22
+1: x/i $pc
+=> 0x400684 <loopend+4>:	add	w22, w22, #0x1
+(gdb) n
+84		b	checkLMB					// Go back to checkLMB to repeat the loop if needed
+1: x/i $pc
+=> 0x400688 <loopend+8>:	b	0x400654 <checkLMB>
+(gdb) n
+
+Breakpoint 1, checkLMB () at assign2c.s:62
+62		cmp	w22,	32					// Compare variable w22 to 32
+1: x/i $pc
+=> 0x400654 <checkLMB>:	cmp	w22, #0x20
+(gdb) n
+63		b.ge	adjustProduct					// If w22 is greater or equal 32, branch to adjustProduct
+1: x/i $pc
+=> 0x400658 <checkLMB+4>:	b.ge	0x400694 <adjustProduct>  // b.tcont
+(gdb) i r w19 w21 w22
+w19            0x7fffff8	134217720
+w21            0x0	0
+w22            0x5	5
+(gdb) n
+65		tst	w19,	0x1				// Test if w19 has the least most bit is 1
+1: x/i $pc
+=> 0x40065c <checkLMB+8>:	tst	w19, #0x1
+(gdb) n
+66		b.eq	shift						// If the LMB is not 1, branch to shift
+1: x/i $pc
+=> 0x400660 <checkLMB+12>:	b.eq	0x400668 <shift>  // b.none
+(gdb) n
+shift () at assign2c.s:70
+70		asr	w19,	w19,	1		// Arithmetic shift right for w19
+1: x/i $pc
+=> 0x400668 <shift>:	asr	w19, w19, #1
+(gdb) n
+72		tst	w21,	0x1				// Test if w21 has the least most bit equal 1
+1: x/i $pc
+=> 0x40066c <shift+4>:	tst	w21, #0x1
+(gdb) n
+73		b.eq	shift_2						// If the LMB is not 1, branch to shift_2
+1: x/i $pc
+=> 0x400670 <shift+8>:	b.eq	0x40067c <shift_2>  // b.none
+(gdb) n
+shift_2 () at assign2c.s:79
+79		and	w19,	w19,	0x7FFFFFFF	// AND operation with w19 and 0x7FFFFFFF
+1: x/i $pc
+=> 0x40067c <shift_2>:	and	w19, w19, #0x7fffffff
+(gdb) n
+loopend () at assign2c.s:82
+82		asr	w21,	w21,	1		// Arithmetic shift right for w21
+1: x/i $pc
+=> 0x400680 <loopend>:	asr	w21, w21, #1
+(gdb) n
+83		add	w22,	w22,	1				// increase variable w22
+1: x/i $pc
+=> 0x400684 <loopend+4>:	add	w22, w22, #0x1
+(gdb) n
+84		b	checkLMB					// Go back to checkLMB to repeat the loop if needed
+1: x/i $pc
+=> 0x400688 <loopend+8>:	b	0x400654 <checkLMB>
+(gdb) n
+
+Breakpoint 1, checkLMB () at assign2c.s:62
+62		cmp	w22,	32					// Compare variable w22 to 32
+1: x/i $pc
+=> 0x400654 <checkLMB>:	cmp	w22, #0x20
+(gdb) i r w19 21w [K[K [K[K[Kw21 w22
+w19            0x3fffffc	67108860
+w21            0x0	0
+w22            0x6	6
+(gdb) n
+63		b.ge	adjustProduct					// If w22 is greater or equal 32, branch to adjustProduct
+1: x/i $pc
+=> 0x400658 <checkLMB+4>:	b.ge	0x400694 <adjustProduct>  // b.tcont
+(gdb) n
+65		tst	w19,	0x1				// Test if w19 has the least most bit is 1
+1: x/i $pc
+=> 0x40065c <checkLMB+8>:	tst	w19, #0x1
+(gdb) n
+66		b.eq	shift						// If the LMB is not 1, branch to shift
+1: x/i $pc
+=> 0x400660 <checkLMB+12>:	b.eq	0x400668 <shift>  // b.none
+(gdb) n
+shift () at assign2c.s:70
+70		asr	w19,	w19,	1		// Arithmetic shift right for w19
+1: x/i $pc
+=> 0x400668 <shift>:	asr	w19, w19, #1
+(gdb) n
+72		tst	w21,	0x1				// Test if w21 has the least most bit equal 1
+1: x/i $pc
+=> 0x40066c <shift+4>:	tst	w21, #0x1
+(gdb) n
+73		b.eq	shift_2						// If the LMB is not 1, branch to shift_2
+1: x/i $pc
+=> 0x400670 <shift+8>:	b.eq	0x40067c <shift_2>  // b.none
+(gdb) n
+shift_2 () at assign2c.s:79
+79		and	w19,	w19,	0x7FFFFFFF	// AND operation with w19 and 0x7FFFFFFF
+1: x/i $pc
+=> 0x40067c <shift_2>:	and	w19, w19, #0x7fffffff
+(gdb) n
+loopend () at assign2c.s:82
+82		asr	w21,	w21,	1		// Arithmetic shift right for w21
+1: x/i $pc
+=> 0x400680 <loopend>:	asr	w21, w21, #1
+(gdb) n
+83		add	w22,	w22,	1				// increase variable w22
+1: x/i $pc
+=> 0x400684 <loopend+4>:	add	w22, w22, #0x1
+(gdb) n
+84		b	checkLMB					// Go back to checkLMB to repeat the loop if needed
+1: x/i $pc
+=> 0x400688 <loopend+8>:	b	0x400654 <checkLMB>
+(gdb) n
+
+Breakpoint 1, checkLMB () at assign2c.s:62
+62		cmp	w22,	32					// Compare variable w22 to 32
+1: x/i $pc
+=> 0x400654 <checkLMB>:	cmp	w22, #0x20
+(gdb) n
+63		b.ge	adjustProduct					// If w22 is greater or equal 32, branch to adjustProduct
+1: x/i $pc
+=> 0x400658 <checkLMB+4>:	b.ge	0x400694 <adjustProduct>  // b.tcont
+(gdb) n
+65		tst	w19,	0x1				// Test if w19 has the least most bit is 1
+1: x/i $pc
+=> 0x40065c <checkLMB+8>:	tst	w19, #0x1
+(gdb) n
+66		b.eq	shift						// If the LMB is not 1, branch to shift
+1: x/i $pc
+=> 0x400660 <checkLMB+12>:	b.eq	0x400668 <shift>  // b.none
+(gdb) n
+shift () at assign2c.s:70
+70		asr	w19,	w19,	1		// Arithmetic shift right for w19
+1: x/i $pc
+=> 0x400668 <shift>:	asr	w19, w19, #1
+(gdb) n
+72		tst	w21,	0x1				// Test if w21 has the least most bit equal 1
+1: x/i $pc
+=> 0x40066c <shift+4>:	tst	w21, #0x1
+(gdb) n
+73		b.eq	shift_2						// If the LMB is not 1, branch to shift_2
+1: x/i $pc
+=> 0x400670 <shift+8>:	b.eq	0x40067c <shift_2>  // b.none
+(gdb) n
+shift_2 () at assign2c.s:79
+79		and	w19,	w19,	0x7FFFFFFF	// AND operation with w19 and 0x7FFFFFFF
+1: x/i $pc
+=> 0x40067c <shift_2>:	and	w19, w19, #0x7fffffff
+(gdb) n
+loopend () at assign2c.s:82
+82		asr	w21,	w21,	1		// Arithmetic shift right for w21
+1: x/i $pc
+=> 0x400680 <loopend>:	asr	w21, w21, #1
+(gdb) n
+83		add	w22,	w22,	1				// increase variable w22
+1: x/i $pc
+=> 0x400684 <loopend+4>:	add	w22, w22, #0x1
+(gdb) n
+84		b	checkLMB					// Go back to checkLMB to repeat the loop if needed
+1: x/i $pc
+=> 0x400688 <loopend+8>:	b	0x400654 <checkLMB>
+(gdb) n
+
+Breakpoint 1, checkLMB () at assign2c.s:62
+62		cmp	w22,	32					// Compare variable w22 to 32
+1: x/i $pc
+=> 0x400654 <checkLMB>:	cmp	w22, #0x20
+(gdb) n
+63		b.ge	adjustProduct					// If w22 is greater or equal 32, branch to adjustProduct
+1: x/i $pc
+=> 0x400658 <checkLMB+4>:	b.ge	0x400694 <adjustProduct>  // b.tcont
+(gdb) i r w19 w21 22[K[Kw22
+w19            0xffffff	16777215
+w21            0x0	0
+w22            0x8	8
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 17636] will be killed.
+
+Quit anyway? (y or n) y
+]0;minhhang.chu@csa3:~/Desktop/CPSC355 /ASN/ASN2minhhang.chu@csa3:~/Desktop/CPSC355 /ASN/ASN2$ exit
+exit
+
+Script done on 2019-05-24 14:24:15-06:00
