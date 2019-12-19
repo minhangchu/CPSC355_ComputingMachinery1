@@ -1,0 +1,376 @@
+Script started on 2019-06-08 22:06:17-06:00
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4$ exitgdb assign4[1P./assign4 gcc assign4.s -g -o assign4[1Pm4 assign4.asm > assign4.s
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4$ m4 assign4.asm > assign4.sexit[Kgdb assign4[1P./assign4 gcc assign4.s -g -o assign4
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4$ gdb assign4
+GNU gdb (GDB) Fedora 8.1.1-4.fc28
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "aarch64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from assign4...done.
+(gdb) r
+Starting program: /home/uga/minhhang.chu/Desktop/CPSC355/ASN/ASN4/assign4 
+warning: the debug information found in "/usr/lib/debug//usr/lib64/ld-2.27.so.debug" does not match "/lib/ld-linux-aarch64.so.1" (CRC mismatch).
+
+Missing separate debuginfos, use: dnf debuginfo-install glibc-2.27-38.fc28.aarch64
+warning: the debug information found in "/usr/lib/debug//lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//usr/lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+Initial box values:
+Box first origin = (0, 0) width = 1 height = 1 area = 1
+Box second origin = (0, 0) width = 1 height = 1 area = 1
+
+Changed box values:
+Box first origin = (-5, 7) width = 1 height = 1 area = 1
+Box second origin = (0, 0) width = 3 height = 3 area = 9
+[Inferior 1 (process 25573) exited with code 071]
+(gdb) b main
+Breakpoint 1 at 0x40072c: file assign4.s, line 153.
+(gdb) n
+The program is not being run.
+(gdb) r
+Starting program: /home/uga/minhhang.chu/Desktop/CPSC355/ASN/ASN4/assign4 
+warning: the debug information found in "/usr/lib/debug//usr/lib64/ld-2.27.so.debug" does not match "/lib/ld-linux-aarch64.so.1" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//usr/lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+
+Breakpoint 1, main () at assign4.s:153
+153		stp	x29,	x30,	[sp, alloc_m]!		// (16B FrameRecord + 20B) & -16
+(gdb) display /i $pc
+1: x/i $pc
+=> 0x40072c <main>:	stp	x29, x30, [sp, #-64]!
+(gdb) n
+154		mov	x29,	sp				// deallocate space is negation of allocating space. To be released at the end main
+1: x/i $pc
+=> 0x400730 <main+4>:	mov	x29, sp
+(gdb) n
+156		mov	x8,	x29				// x8 has the address of struct box 1
+1: x/i $pc
+=> 0x400734 <main+8>:	mov	x8, x29
+(gdb) n
+157		add	x8,	x8,	16
+1: x/i $pc
+=> 0x400738 <main+12>:	add	x8, x8, #0x10
+(gdb) n
+158		bl	newBox
+1: x/i $pc
+=> 0x40073c <main+16>:	bl	0x40060c <point>
+(gdb) n
+160		mov	x8,	x29				// x8 has the address of struct box 2
+1: x/i $pc
+=> 0x400740 <main+20>:	mov	x8, x29
+(gdb) n
+161		add	x8,	x8,	16+20
+1: x/i $pc
+=> 0x400744 <main+24>:	add	x8, x8, #0x24
+(gdb) n
+162		bl	newBox
+1: x/i $pc
+=> 0x400748 <main+28>:	bl	0x40060c <point>
+(gdb) n
+164		ldr	x0,	=print1				// load print statement 1
+1: x/i $pc
+=> 0x40074c <main+32>:	ldr	x0, 0x400810 <next+68>
+(gdb) n
+165		bl	printf					// calling print function
+1: x/i $pc
+=> 0x400750 <main+36>:	bl	0x400480 <printf@plt>
+(gdb) n
+Initial box values:
+168		mov	x8,	x29				// x8 has the address of struct box 1
+1: x/i $pc
+=> 0x400754 <main+40>:	mov	x8, x29
+(gdb) n
+169		add	x8,	x8,	16
+1: x/i $pc
+=> 0x400758 <main+44>:	add	x8, x8, #0x10
+(gdb) n
+170		adrp	x1,	print2				// loading print statement
+1: x/i $pc
+=> 0x40075c <main+48>:	adrp	x1, 0x400000
+(gdb) n
+171		add	x1,	x1, :lo12:print2	
+1: x/i $pc
+=> 0x400760 <main+52>:	add	x1, x1, #0x5ad
+(gdb) n
+172		ldr	x2,	[x29, 16]			// loading the address of box 1
+1: x/i $pc
+=> 0x400764 <main+56>:	ldr	x2, [x29, #16]
+(gdb) n
+173		bl 	printBox				// calling printBox
+1: x/i $pc
+=> 0x400768 <main+60>:	bl	0x400694 <printBox>
+(gdb) n
+Box first origin = (0, 0) width = 1 height = 1 area = 1
+175		mov	x8,	x29				// x8 has the address of struct box 2
+1: x/i $pc
+=> 0x40076c <main+64>:	mov	x8, x29
+(gdb) i r x8
+x8             0x40	64
+(gdb) n
+176		add	x8,	x8,	16+20
+1: x/i $pc
+=> 0x400770 <main+68>:	add	x8, x8, #0x24
+(gdb) n
+177		adrp	x1,	print3
+1: x/i $pc
+=> 0x400774 <main+72>:	adrp	x1, 0x400000
+(gdb) n
+178		add	x1,	x1, :lo12:print3		// loading print statement
+1: x/i $pc
+=> 0x400778 <main+76>:	add	x1, x1, #0x5b3
+(gdb) n
+179		ldr	x2,	[x29,16+20]			// loading the address of box 2
+1: x/i $pc
+=> 0x40077c <main+80>:	ldur	x2, [x29, #36]
+(gdb) n
+180		bl 	printBox				// caling printBox
+1: x/i $pc
+=> 0x400780 <main+84>:	bl	0x400694 <printBox>
+(gdb) n
+Box second origin = (0, 0) width = 1 height = 1 area = 1
+182		mov	x8,	x29
+1: x/i $pc
+=> 0x400784 <main+88>:	mov	x8, x29
+(gdb) n
+183		add	x8,	x8,	16			// x8 has the address of box 1
+1: x/i $pc
+=> 0x400788 <main+92>:	add	x8, x8, #0x10
+(gdb) n
+184		mov	x9,	x29
+1: x/i $pc
+=> 0x40078c <main+96>:	mov	x9, x29
+(gdb) n
+185		add	x9,	x9,	16+20			// x9 has the address of box 2
+1: x/i $pc
+=> 0x400790 <main+100>:	add	x9, x9, #0x24
+(gdb) n
+186		bl	equal					// calling equl
+1: x/i $pc
+=> 0x400794 <main+104>:	bl	0x4006c4 <equal>
+(gdb) n
+188		cmp	x23,	0				// Compare result of equal with 0
+1: x/i $pc
+=> 0x400798 <main+108>:	cmp	x23, #0x0
+(gdb) n
+189		b.ne	next					// If not equal, goes to next
+1: x/i $pc
+=> 0x40079c <main+112>:	b.ne	0x4007cc <next>  // b.any
+(gdb) n
+191		mov	x8,	x29				// x8 has the address of box 1
+1: x/i $pc
+=> 0x4007a0 <main+116>:	mov	x8, x29
+(gdb) n
+192		add	x8,	x8,	16
+1: x/i $pc
+=> 0x4007a4 <main+120>:	add	x8, x8, #0x10
+(gdb) n
+193		mov	x0,	x19				// load the address of box 1
+1: x/i $pc
+=> 0x4007a8 <main+124>:	mov	x0, x19
+(gdb) n
+194		mov	w1,	-5				// load -5 to 2nd argument
+1: x/i $pc
+=> 0x4007ac <main+128>:	mov	w1, #0xfffffffb            	// #-5
+(gdb) n
+195		mov	w2,	7				// loaf 7 to 3rd argument
+1: x/i $pc
+=> 0x4007b0 <main+132>:	mov	w2, #0x7                   	// #7
+(gdb) n
+196		bl	move					// calling move 
+1: x/i $pc
+=> 0x4007b4 <main+136>:	bl	0x400638 <move>
+(gdb) n
+198		mov	x8,	x29		
+1: x/i $pc
+=> 0x4007b8 <main+140>:	mov	x8, x29
+(gdb) n
+199		add	x8,	x8,	16+20			// x8 has the address of box  2
+1: x/i $pc
+=> 0x4007bc <main+144>:	add	x8, x8, #0x24
+(gdb) n
+200		mov	x0,	x20				// load the address of box 2 to register
+1: x/i $pc
+=> 0x4007c0 <main+148>:	mov	x0, x20
+(gdb) n
+201		mov	w1,	3				// mov 3 to 2nd argument
+1: x/i $pc
+=> 0x4007c4 <main+152>:	mov	w1, #0x3                   	// #3
+(gdb) n
+202		bl	expand					// calling expand
+1: x/i $pc
+=> 0x4007c8 <main+156>:	bl	0x400660 <expand>
+(gdb) n
+
+Changed box values:
+Box first origin = (-5, 7) width = 1 height = 1 area = 1
+Box second origin = (0, 0) width = 3 height = 3 area = 9
+[Inferior 1 (process 25576) exited with code 071]
+(gdb) q
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4$ gdb assign4[16@cc assign4.s -g -o[C[C[C[C[C[C[C[C[16Pdb[C[C[C[C[C[C[C[C
+GNU gdb (GDB) Fedora 8.1.1-4.fc28
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "aarch64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from assign4...done.
+(gdb) e[Kb ex[K[Kexpand
+Breakpoint 1 at 0x400660: file assign4.s, line 70.
+(gdb) n
+The program is not being run.
+(gdb) r
+Starting program: /home/uga/minhhang.chu/Desktop/CPSC355/ASN/ASN4/assign4 
+warning: the debug information found in "/usr/lib/debug//usr/lib64/ld-2.27.so.debug" does not match "/lib/ld-linux-aarch64.so.1" (CRC mismatch).
+
+Missing separate debuginfos, use: dnf debuginfo-install glibc-2.27-38.fc28.aarch64
+warning: the debug information found in "/usr/lib/debug//lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//usr/lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+Initial box values:
+Box first origin = (0, 0) width = 1 height = 1 area = 1
+Box second origin = (0, 0) width = 1 height = 1 area = 1
+
+Breakpoint 1, expand () at assign4.s:70
+70		stp	x29,	x30,	[sp,alloc]!		// (16B FrameRecord + 20B) & -16
+(gdb) dis p[K[Kplay /i $pc
+1: x/i $pc
+=> 0x400660 <expand>:	stp	x29, x30, [sp, #-48]!
+(gdb) display /i $pc[C[C[C[C[C[C[Kn
+71		mov	x29,	sp				// deallocate space is negation of allocating space. To be released at the end main
+1: x/i $pc
+=> 0x400664 <expand+4>:	mov	x29, sp
+(gdb) n
+73		mov	w1,	3				// move w1 = 3
+1: x/i $pc
+=> 0x400668 <expand+8>:	mov	w1, #0x3                   	// #3
+(gdb) n
+75		ldr	w21,	[x8, bdimension + width]	// load value of width to x21
+1: x/i $pc
+=> 0x40066c <expand+12>:	ldr	w21, [x8, #8]
+(gdb) n
+76		mul 	w21,	w21,	w1			// multiply width with 3
+1: x/i $pc
+=> 0x400670 <expand+16>:	mul	w21, w21, w1
+(gdb) n
+77		str	w21,	[x8, bdimension + width]	// store width into stack
+1: x/i $pc
+=> 0x400674 <expand+20>:	str	w21, [x8, #8]
+(gdb) n
+79		ldr	w22,	[x8, bdimension + height]	// load value of height to x21
+1: x/i $pc
+=> 0x400678 <expand+24>:	ldr	w22, [x8, #12]
+(gdb) n
+80		mul 	w22,	w22,	w1			// multiply heigth with 3
+1: x/i $pc
+=> 0x40067c <expand+28>:	mul	w22, w22, w1
+(gdb) n
+81		str	w22,	[x8, bdimension + height]	// store height into stack
+1: x/i $pc
+=> 0x400680 <expand+32>:	str	w22, [x8, #12]
+(gdb) n
+83		mul	w21,	w21,	w22			// multiply w21 with w22 to get area
+1: x/i $pc
+=> 0x400684 <expand+36>:	mul	w21, w21, w22
+(gdb) n
+84		str	w21,	[x8, area]			// store area of box to the stack
+1: x/i $pc
+=> 0x400688 <expand+40>:	str	w21, [x8, #16]
+(gdb) n
+86		ldp	x29,	x30,	[sp],	dealloc		// restore FP and LR and deallocate memory
+1: x/i $pc
+=> 0x40068c <expand+44>:	ldp	x29, x30, [sp], #48
+(gdb) n
+expand () at assign4.s:87
+87		ret						// end main
+1: x/i $pc
+=> 0x400690 <expand+48>:	ret
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 25584] will be killed.
+
+Quit anyway? (y or n) y
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4$ gdb assign4[16@cc assign4.s -g -o[C[C[C[C[C[C[C[C[16Pdb[C[C[C[C[C[C[C[C
+GNU gdb (GDB) Fedora 8.1.1-4.fc28
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "aarch64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from assign4...done.
+(gdb) g[Kb ma[K[Kmove[K[K[K[Knew bo[K[K[K[KwBix[K[Kox
+Breakpoint 1 at 0x40060c: file assign4.s, line 39.
+(gdb) r
+Starting program: /home/uga/minhhang.chu/Desktop/CPSC355/ASN/ASN4/assign4 
+warning: the debug information found in "/usr/lib/debug//usr/lib64/ld-2.27.so.debug" does not match "/lib/ld-linux-aarch64.so.1" (CRC mismatch).
+
+Missing separate debuginfos, use: dnf debuginfo-install glibc-2.27-38.fc28.aarch64
+warning: the debug information found in "/usr/lib/debug//lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+warning: the debug information found in "/usr/lib/debug//usr/lib64/libc-2.27.so.debug" does not match "/lib64/libc.so.6" (CRC mismatch).
+
+
+Breakpoint 1, point () at assign4.s:39
+39		stp	x29,	x30,	[sp, alloc]!		// (16B FrameRecord + 20B) & -16	
+(gdb) n
+40		mov	x29,	sp				// deallocate space is negation of allocating space. To be released at the end main
+(gdb) n
+42		mov	w9,	0				// move 0 to w9
+(gdb) n
+43		mov	w10,	1				// move 1 to w10
+(gdb) n
+45		str	w9,	[x8,	origin + x]		// store 0 to origin x
+(gdb) n
+46		str	w9,	[x8,	origin + y]		// store 0 to origin y
+(gdb) n
+47		str	w10,	[x8,	bdimension + width]	// store 1 to width of the box
+(gdb) n
+48		str	w10,	[x8,	bdimension + height]	// store 1 to height of the box
+(gdb) n
+49		str	w10,	[x8,	area]			// store 1 to area of the box
+(gdb) n
+51		ldp	x29,	x30,	[sp],	dealloc		// restore FP and LR and deallocate memory
+(gdb) n
+point () at assign4.s:52
+52		ret						// end main
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 25592] will be killed.
+
+Quit anyway? (y or n) y
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN4$ exit
+exit
+
+Script done on 2019-06-08 22:09:06-06:00
