@@ -1,0 +1,19 @@
+Script started on 2019-06-16 00:13:49-06:00
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ vi a5b.asm./a5b 12 21gcc a5b.s -o a5bm4 a5b.asm > a5b.s
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ m4 a5b.asm > a5b.s[8Pvi a5b.asm./a5b 12 21gcc a5b.s -o a5b
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ gcc a5b.s -o a5bm4 a5b.asm > a5b.s[8Pvi a5b.asm./a5b 12 21
+December 21st is Winter
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ ./a5b 03 20
+March 20th is Winter
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ .a5b[K[K[K[K./a5b 08 15
+August 15th is Summer
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ ./a5b 08 15[K[K[K[K[K10 20
+October 20th is Fall
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ ./a5b 10 20[K[K[K[K3 20
+usage:	a5b mm dd
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ ./a5b 13 20[K[K[K[K[K456 
+usage:	a5b mm dd
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ exit
+exit
+
+Script done on 2019-06-16 00:15:12-06:00

@@ -1,0 +1,225 @@
+Script started on 2019-06-16 01:00:41-06:00
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ exit./a5b 456 13 20[1P456 [6Pexit[Kexit./a5b 456 13 200[C[C[C08 153 2012 21gcc a5b.s -o a5bm4 a5b.asm > a5b.s[8Pvi a5b.asmm4 a5b.asm > a5b.s[2Pgcc a5b.s -o a5b[5P./a5b 12 2103 208 1510 203[C[C[C[1P456 [6Pexit[Kexit./a5b 456 13 200[C[C[C08 153 2012 21gcc a5b.s -o a5bm4 a5b.asm > a5b.s[8Pvi a5b.asm./a5b 12 21gcc a5b.s -o a5b[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Km4 a5a.asm > a5a.s
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ gcc  [K-c a5aMain.c
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ as a5a.s -o a5a.o
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ gcc a5aMain-[K.o a5a.o -o a5aMain
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ ./a5aMain 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 1
+
+Enter the positive integer value to be enqueued: 1
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 1
+
+Enter the positive integer value to be enqueued: 2
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 1
+
+Enter the positive integer value to be enqueued: 3
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 1
+
+Enter the positive integer value to be enqueued: 4
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 3
+
+Current queue contents:
+  1 <-- head of queue
+  2
+  3
+  4 <-- tail of queue
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 1
+
+Enter the positive integer value to be enqueued: 5
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 1
+
+Enter the positive integer value to be enqueued: 6
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 1
+
+Enter the positive integer value to be enqueued: 7
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 1
+
+Enter the positive integer value to be enqueued: 8
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 3
+
+Current queue contents:
+  1 <-- head of queue
+  2
+  3
+  4
+  5
+  6
+  7
+  8 <-- tail of queue
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 1
+
+Enter the positive integer value to be enqueued: 9
+
+Queue overflow! Cannot enqueue into a full queue.
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 2
+
+Dequeued value is 1
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 3
+
+Current queue contents:
+  2 <-- head of queue
+  3
+  4
+  5
+  6
+  7
+  8 <-- tail of queue
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 2
+
+Dequeued value is 2
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 2
+
+Dequeued value is 3
+
+Press the return key to continue . . . 2
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 2
+
+Dequeued value is 4
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 3
+
+Current queue contents:
+  5 <-- head of queue
+  6
+  7
+  8 <-- tail of queue
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 2
+
+Dequeued value is 5
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 2
+
+Dequeued value is 6
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 2
+
+Dequeued value is 7
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 2
+
+Dequeued value is 8
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 2
+
+Queue underflow! Cannot dequeue from an empty queue.
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 3
+
+Empty queue
+
+Press the return key to continue . . . 
+[3J[H[2J### Queue Operations ###
+
+Press 1 - Enqueue, 2 - Dequeue, 3 - Display, 4 - Exit
+Your option? 4
+
+Terminating program
+]0;minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5minhhang.chu@csa2:~/Desktop/CPSC355/ASN/ASN5$ exit
+exit
+
+Script done on 2019-06-16 01:04:04-06:00
